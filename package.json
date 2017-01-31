@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test":  "test",
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-prebuild": "echo this runs before heroku intalls dep.",
+    "heroku-postbuild": "echo this after heroku install"
   },
   "keywords": [
     "react"
