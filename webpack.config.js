@@ -3,13 +3,28 @@
  * Created on 24/01/17.
  */
 
+var webpack = require('webpack');
+
 module.exports = {
     watch: 	  true,
     progress: true,
     colors:   true,
     debug: 	  true,
     context:  __dirname,
-    entry:    './app/app.jsx',
+    entry:    [
+        'script!jquery/dist/jquery.min.js',
+        'script!foundation-sites/dist/js/foundation.min.js',
+        './app/app.jsx'
+    ],
+    externals: {
+        jquery: 'jQuery'
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            '$':      'jquery',
+            'jQuery': 'jquery'
+        })
+    ],
     output: {
         path:     __dirname,
         filename: './public/bundle.js'
