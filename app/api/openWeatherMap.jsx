@@ -9,13 +9,13 @@ module.exports = {
         var requestUrl      = `${OPEN_WEATHER_MAP_URL}&q=${encodedLocation},it`;
 
         return axios.get(requestUrl).then(function (res) {
-            if(res.data.cod != 200) {
-                throw new Error(res.data.message);
+            if(res.data.cod != 200 || res.data.list.length == 0) {
+                throw new Error('Unable to fetch weather for that location');
             }else {
                 return res.data.list[0].main.temp;
             }
         }, function (err) {
-            throw new Error(res.data.message);
+            throw new Error('Unable to fetch weather for that location');
         });
 
     }
